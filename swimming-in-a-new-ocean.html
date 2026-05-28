@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swimming in a New Ocean</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #111111;
+    --text-secondary: #333333;
+    --text-muted: #555555;
+    --accent: #003366;
+    --accent-light: #dce8f5;
+    --accent-border: #1a5ca8;
+    --rule: #767676;
+    --rule-light: #aaaaaa;
+    --memorial-bg: #f0f4f8;
+    --memorial-border: #003366;
+    --drop: #7a0000;
+    --pull-bg: #f5f8fc;
+  }
+
+  /* WCAG AA: all text meets 4.5:1 contrast on white */
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    font-size: 19px;
+    line-height: 1.8;
+  }
+
+  body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 64px 40px 120px;
+  }
+
+  /* Skip to content for screen readers */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--accent);
+    color: #ffffff;
+    padding: 8px 16px;
+    z-index: 100;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: 0 0 4px 0;
+  }
+  .skip-link:focus { top: 0; }
+
+  /* Masthead */
+  header role="banner" {}
+  .masthead {
+    border-top: 4px solid var(--text);
+    border-bottom: 2px solid var(--rule);
+    padding: 20px 0 16px;
+    margin-bottom: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .masthead-label {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  /* Title block */
+  .title-block {
+    margin-bottom: 52px;
+    padding-bottom: 36px;
+    border-bottom: 2px solid var(--rule);
+  }
+
+  .essay-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .essay-subtitle {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* Main content */
+  main {}
+
+  /* Drop cap */
+  .drop-cap::first-letter {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 5em;
+    font-weight: 700;
+    color: var(--drop);
+    float: left;
+    line-height: 0.8;
+    margin-right: 6px;
+    margin-top: 8px;
+  }
+
+  /* Body text */
+  p {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 1.55em;
+    text-align: left;
+  }
+
+  em {
+    font-style: italic;
+    color: var(--text);
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    background: var(--pull-bg);
+    border-left: 5px solid var(--accent-border);
+    margin: 2.4em 0;
+    padding: 1.2em 1.6em;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--accent);
+    line-height: 1.6;
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* Section divider */
+  .section-break {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 3em 0;
+  }
+
+  .section-break::before,
+  .section-break::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: var(--rule-light);
+  }
+
+  .section-break-ornament {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1;
+    aria-hidden: "true";
+  }
+
+  /* Addendum */
+  .addendum {
+    margin-top: 72px;
+    padding-top: 40px;
+    border-top: 4px double var(--rule);
+  }
+
+  .addendum-label {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .addendum-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.5rem, 4vw, 2.1rem);
+    font-weight: 700;
+    font-style: italic;
+    color: var(--text);
+    margin-bottom: 32px;
+    line-height: 1.2;
+  }
+
+  /* Memorial boxes */
+  .memorial {
+    background: var(--memorial-bg);
+    border: 2px solid var(--rule-light);
+    border-left: 6px solid var(--memorial-border);
+    padding: 28px 32px;
+    margin: 2.8em 0;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .memorial-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--text);
+    margin-bottom: 16px;
+    letter-spacing: 0.01em;
+  }
+
+  .memorial p {
+    font-size: 0.97rem;
+    color: var(--text-secondary);
+    text-align: left;
+    margin-bottom: 1.2em;
+  }
+
+  .memorial p:last-child { margin-bottom: 0; }
+
+  /* Footer */
+  footer {
+    margin-top: 80px;
+    padding-top: 20px;
+    border-top: 2px solid var(--rule);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+
+  /* Focus styles for keyboard nav */
+  :focus-visible {
+    outline: 3px solid var(--accent-border);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 600px) {
+    html { font-size: 17px; }
+    body { padding: 40px 20px 80px; }
+    .masthead { flex-direction: column; gap: 6px; }
+    .drop-cap::first-letter { font-size: 4em; }
+    .memorial { padding: 20px 20px; }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f0f0f;
+      --text: #f0eeeb;
+      --text-secondary: #cccccc;
+      --text-muted: #aaaaaa;
+      --accent: #90c4f0;
+      --accent-light: #1a2a3a;
+      --accent-border: #5ba3dc;
+      --rule: #666666;
+      --rule-light: #555555;
+      --memorial-bg: #1a1f28;
+      --memorial-border: #5ba3dc;
+      --drop: #e87070;
+      --pull-bg: #141c26;
+    }
+  }
+
+  @media print {
+    body { padding: 0; max-width: 100%; }
+    .pull-quote { border-color: #333; color: #000; background: #f8f8f8; }
+    .memorial { background: #f5f5f5; border-color: #333; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header>
+  <div class="masthead" role="banner">
+    <span class="masthead-label">Public Health — Reflections on Practice</span>
+    <span class="masthead-label">Bradford Wheeler, M.P.H.</span>
+  </div>
+
+  <div class="title-block">
+    <h1 class="essay-title">Swimming in a New Ocean</h1>
+    <p class="essay-subtitle">On leaving familiar work, confronting what data cannot see, and the people who showed the way.</p>
+  </div>
+</header>
+
+<main id="main-content">
+
+<p class="drop-cap">The invitation back felt like a homecoming. After the sustained emergency of COVID response — the data sprints, the incident command structures, the strange intimacy of a public health system under pressure — returning to communicable disease seemed like solid ground. Familiar work. Work I knew how to do.</p>
+
+<p>But something had shifted, and it took me a while to name it.</p>
+
+<p>I kept looking at the data and seeing the shape of the outcomes before I ran the analysis. Not because the pathogen was predictable, but because the people most affected were not random. They were patterned — by neighborhood, by occupation, by the particular exhaustion that comes from housing insecurity or working without sick leave. The surveillance numbers were telling me something the case definitions weren't designed to capture.</p>
+
+<p>This is not a novel observation in public health. We have known for a long time that zip code predicts health outcomes better than genetic code. But there's a difference between knowing something academically and watching it move through your data in real time, shaping the very metrics you've been handed responsibility for. The honest question I found myself sitting with was: <em>what exactly am I measuring, and what am I leaving out by measuring it this way?</em></p>
+
+<div class="section-break" aria-hidden="true"><span class="section-break-ornament">✦</span></div>
+
+<p>The pandemic had forced us to confront this problem in real time. At scale, COVID broke person tracking almost immediately — the volume of tests flowing through surveillance systems outpaced our ability to reliably follow individuals across records. A person could appear multiple times, under slightly different identifiers, and the system had no reliable way to know it was looking at the same person twice.</p>
+
+<p>We worked with the health information exchange to implement a master patient index solution. It wasn't glamorous work, but it was foundational — the kind of infrastructure that makes everything else possible. The volumes of duplicate records were enormous. A person appearing multiple times under slightly different identifiers wasn't an edge case — it was the norm at pandemic scale. And buried within all of that were negative tests, which in surveillance terms are non-cases. A negative test tells you something clinically, but among case data it is noise — a nuisance that obscures the signal. There was no justification for pushing that burden onto users. The deduplication had to happen at the infrastructure level, invisibly, before the data ever reached the people trying to use it.</p>
+
+<p>By reconciling lab tests and vaccine events to a consistent person-level record, we were able to support analyses that required knowing, with confidence, who had been vaccinated and who had subsequently tested positive. The solution was also capable of more targeted applications — school-based screening surveillance, for instance, had we needed to go there. Fortunately, we didn't. But the capability existed, and that mattered.</p>
+
+<p>What that infrastructure sustained was an ongoing operation. Leading the COVID data team meant producing regular intelligence — situation reports, analytic summaries, and dashboards that needed to be accurate, current, and legible to a wide range of audiences. The public was the primary user. North Carolinians checking case counts, tracking hospitalizations, making decisions about their families and their lives. Behind them came epidemiologists, executive leadership, partner agencies, and the press. The COVID dashboard became one of the highest traffic assets the department had ever published — a daily point of contact between the public and the state's understanding of the epidemic. That visibility carried its own weight. The data had to be right, and it had to be right on time.</p>
+
+<p>The work had different registers. Some of it fed partners and researchers who needed clean, reliable data to answer specific questions — long-form collaborations that took months to mature. But much of it was shorter order: quick analyses, rapid turnaround requests, the kind of work where someone needed an answer by the afternoon briefing and you figured out how to get there. We were running a kitchen that served both slow-cooked projects and short-order needs simultaneously, and the team had to be fluent in both.</p>
+
+<p>External communications flowed through a dedicated comms team who translated what we produced into language and formats fit for public consumption and partner coordination. That boundary mattered — it let the data team stay close to the analysis while ensuring that what went out the door had been shaped for its audience.</p>
+
+<p>And then there were the requests that arrived with a different kind of weight. Legal inquiries. Special requests that came flagged from above and needed handling with both speed and care. These were not uncommon, and they required a different kind of attentiveness — not just analytic rigor, but situational awareness about what was being asked, by whom, and why.</p>
+
+<p>We did undertake some school-based screening work as well — applying the infrastructure we had built to support surveillance in educational settings during a particularly uncertain period of the response. The details of that work are not mine to share specifically, but the capability was real, and exercising it even in limited ways demonstrated something important: that the system could be pointed at new problems without being rebuilt from scratch.</p>
+
+<p>That infrastructure made things possible that hadn't been possible before. The master patient index solution built with the health information exchange was not merely an operational fix — it was the prerequisite for a different kind of science. Because a person's record could now be held together reliably across data sources, it became possible to link COVID-19 surveillance data to the vaccine management system with the confidence that the matches were real. Working with colleagues at the UNC Gillings School of Global Public Health, that linked data became the foundation for a series of studies that would reach the highest levels of the scientific literature. By connecting North Carolina's COVID-19 surveillance system to the vaccine management system across more than ten million residents, we were able to answer questions the country was urgently asking. The first study, published in the <em>New England Journal of Medicine</em>, examined vaccine effectiveness across a nine-month period — tracking protection against infection, hospitalization, and death across all three available vaccines, and untangling how much of the summer 2021 surge was driven by waning immunity versus the emergence of the Delta variant. A second study, published in <em>JAMA</em>, examined how primary vaccination, booster doses, and prior infection each independently shaped a person's risk of severe outcomes. A third, back in the <em>New England Journal of Medicine</em>, looked specifically at bivalent boosters against severe Omicron infection — some of the earliest real-world evidence on the updated shots as they were being rolled out.</p>
+
+<div class="pull-quote">These were not small questions. They were shaping national policy in real time. And they were answerable only because we had done the unglamorous work of building a system that could hold a person's record together across data sources.</div>
+
+<p>What I did not fully appreciate at the time was how much I was also learning about public health systems — not the data systems, but the organizational ones. Jessie Tenenbaum, the department's Chief Data Officer, had arrived from Duke before the pandemic began, bringing with her a vision that went beyond infrastructure. She was building toward something more ambitious: a learning public health system — one that could generate knowledge from its own operations, adapt in response to what it found, and share that learning across the institutions and communities it served. Working inside an organization she was helping to shape in that direction gave me a frame I didn't know I needed. The COVID response wasn't just an emergency. It was, if you were paying attention, a proof of concept.</p>
+
+<div class="section-break" aria-hidden="true"><span class="section-break-ornament">✦</span></div>
+
+<p>What struck me was how much that work resembled the problem I kept seeing in HIV surveillance. The underlying challenge was the same: a person moving through systems that weren't designed to recognize them consistently over time. In COVID we had built something that could hold a person together across data sources. In HIV, we were still largely depending on systems that couldn't.</p>
+
+<p>Work I'd been part of made this concrete in a way I couldn't look away from. A linkage study between statewide North Carolina criminal court records and confidential HIV surveillance data found that over 9,500 people with HIV experienced criminal charges during the study period, and those individuals were more likely to be male and report Black race. The research examined viral suppression — one of our clearest clinical markers of care continuity — in the twelve months before and after criminal charges, finding that the period following resolution of charges was associated with increased risk of falling out of suppression.</p>
+
+<p>Read one way, that's a care gap. Read another way, it's a map of what the legal system does to a person's ability to stay healthy. The charges themselves were the exposure. The surveillance metric was just the evidence left behind.</p>
+
+<p>But I kept pulling on another thread. My own work on HIV care outcome measures had surfaced a more fundamental problem with how we use registry-based data sources to tell the story of who is and isn't engaged in care. Surveillance systems depend on the ability to reconcile a person's records across time — to follow someone forward through the data as a continuous identity. When that reconciliation fails, when a name change, a document inconsistency, or an administrative gap breaks the chain, the system loses the person. Not because they stopped seeking care. Because the data couldn't hold them together.</p>
+
+<p>There is a cruel irony embedded in this for HIV specifically. The U=U campaign — Undetectable equals Untransmittable — is one of the great public health messages of the modern era. It tells people living with HIV that sustained viral suppression protects not only their own health but that of their partners. But in the surveillance world, undetectable carries a different shadow meaning. A person who is virally suppressed may stop generating the lab events that make them visible in the data. They become, in a surveillance sense, untrackable. Undetectable equals untrackable. The very marker of treatment success becomes the mechanism by which the system loses the person — or mistakes their absence for disengagement.</p>
+
+<p>The mechanism has echoes of immortal time bias — the person exists in the population, accumulating time at risk, but the surveillance system has lost the thread.</p>
+
+<p>That loss doesn't look like a data quality problem. It looks like a lapse in care. It looks like disengagement. It looks, in the aggregate, like a disparity — one that points back at the patient rather than at the system doing the measuring.</p>
+
+<p>This is where the social determinants stop being a background variable and start being a structural feature of the evidence itself. The populations most likely to experience document inconsistency over time — people who are incarcerated, people who are unhoused, people navigating systems that do not protect the stability of their identity — are the same populations whose outcomes we are most worried about. The surveillance gaps and the care gaps are not independent phenomena. They share a cause, and that cause lives upstream.</p>
+
+<div class="pull-quote">And yet the communities living inside these numbers rarely have access to that interpretation. If those communities could ask not just <em>what do my outcomes show</em> but <em>how are my outcomes being measured, and what does this system miss about me</em> — that question alone would change the conversation.</div>
+
+<p>They are handed the conclusions — the disparity statistics, the engagement rates, the outcome dashboards — without the machinery behind them. They are not told that the gap the system sees may be partly a gap in the system's ability to see. It would shift accountability. It would demand a different kind of transparency from the institutions doing the measuring.</p>
+
+<p>That's when the frame started to feel genuinely too small.</p>
+
+<div class="section-break" aria-hidden="true"><span class="section-break-ornament">✦</span></div>
+
+<h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:700;font-style:italic;color:var(--text);margin-bottom:1em;line-height:1.2;">The Paradigm Problem</h2>
+
+<p>Mervyn Susser saw this coming.</p>
+
+<p>Writing in the mid-1990s with his son Ezra, Susser argued that the dominant paradigm of his era — risk factor epidemiology — was growing less serviceable. It had done extraordinary work. The identification of individual-level risk factors had reshaped medicine and public health across the second half of the twentieth century. But the paradigm had a ceiling. By focusing relentlessly on proximate causes at the individual level, it left systematically understudied the forces acting at other levels — social, environmental, structural — that determined why some people were exposed to risk in the first place and others were not.</p>
+
+<p>Susser called what he saw coming eco-epidemiology. The image he reached for was Chinese boxes — nested levels of organization, each containing the one below it, each requiring its own methods and its own questions. Molecular epidemiology at the innermost level. Individual risk factors in the middle. Social and environmental contexts at the outermost ring. The argument was not that risk factors didn't matter. It was that a single-level paradigm, however well executed, could not see the whole problem. The web of causation had a spider, and risk factor epidemiology wasn't looking for it.</p>
+
+<p>What Susser described as an intellectual limitation of the paradigm, I kept recognizing as an institutional one. Applied public health had inherited the siloed structure of the disciplines that preceded it. Programs organized around disease categories. Data systems organized around programs. Funding organized around data systems. Each level optimized for its own outputs, accountable to its own metrics, largely incurious about what was happening one box out.</p>
+
+<p>The result was a kind of enforced myopia. Not malicious — institutional myopia rarely is. But consequential. The Arant and Rosen study had made the court system's role in viral suppression visible in the data. But the data was only telling part of the story. I had seen another part of it through my time working with the state's AIDS Drug Assistance Program, known as HMAP. Jails across North Carolina had various arrangements in place to bridge medications for people entering custody. Some were thoughtful and well-coordinated. Others were not. The continuity of antiretroviral therapy — the thing that produces and sustains viral suppression — depended on arrangements that were locally negotiated, inconsistently implemented, and largely invisible to the surveillance system tracking the outcome.</p>
+
+<p>There was something else I had learned, through Dr. Michelle Ogle — a clinician and former member of the Presidential Advisory Council on HIV/AIDS (PACHA) — about what sustaining suppression actually requires at the level of the body and the life. Antiretroviral medications need to be taken with food. Not as a preference, but as a clinical necessity — absorption, tolerability, adherence. Dr. Ogle's practice had recognized that prescribing the medication was not enough. They installed a food pantry. Not as a charitable gesture, but as a clinical intervention. Food is medicine. And medicine that is taken consistently, with adequate nutrition, produces viral suppression. Viral suppression is prevention. The dividend — the reduction in transmission, the sustained health of the patient, the cost avoided downstream — is real and measurable. But it only appears when the system is designed to maximize health outcomes rather than simply to deliver a prescription.</p>
+
+<div class="pull-quote">What the surveillance metric recorded was the outcome. What it could not see was the food pantry, the jail medication bridge, the broken appointment, the lapsed insurance. A communicable disease branch measuring suppression rates was measuring the shadow of a system it couldn't see. Susser would have recognized the problem immediately. The outcome lived at one level. The causes lived in the boxes surrounding it.</div>
+
+<p>Susser's prescription was integration — not the dissolution of levels, but the explicit recognition of their connections and a commitment to designing research and practice that could move between them. That is harder than it sounds in a system that funds silos, staffs silos, and measures the outputs of silos. The Chinese boxes are real. But the walls between them are largely institutional, not epidemiological. They reflect how we organized ourselves, not how disease actually moves through the world.</p>
+
+<p>This was the tension I kept returning to. Not just in the data. In the architecture of the field itself.</p>
+
+<div class="section-break" aria-hidden="true"><span class="section-break-ornament">✦</span></div>
+
+<p>This wasn't just a theoretical concern. I had the chance to bring it into a federal Technical Expert Panel (TEP) convened to update the methods used to perform jurisdictional unmet need analyses — the estimates that tell a state or locality how many people with HIV are not receiving care, and that drive resource allocation decisions at the highest levels. These analyses depend heavily on surveillance data, which means they inherit all of its limitations. When records go unlinked, they don't disappear from the denominator. They accumulate there, quietly inflating the apparent size of the unmet need. The bias doesn't announce itself. It just creeps in, record by record, until the estimate is carrying more noise than signal.</p>
+
+<p>During a lunch break, David Holtgrave and I found ourselves in conversation about exactly this. Holtgrave had spent decades at the center of HIV prevention science — at CDC, at Johns Hopkins, on the President's Advisory Council — and he understood the methodological stakes as well as anyone. I walked him through what I was seeing: the ways that unlinked data was distorting the picture, and why the standard approaches weren't adequately accounting for it. By the end of the day, we had something practical to show for it. The panel dismissed with a plan to implement simple filters — guardrails designed to put reasonable limits on how much unlinked data could creep into the analysis and corrupt the signal.</p>
+
+<p>It was not a dramatic solution. But it was the right one. Sometimes the most important methodological advance is the one that keeps a known bias from quietly compounding itself into a policy decision.</p>
+
+<p>The federal TEP was one venue for this conversation. CSTE — the Council of State and Territorial Epidemiologists — was another. That particular meeting was being held in North Carolina, and its attendance carried its own unspoken weight. Several states had declined to send representatives, a quiet act of protest against the state's newly implemented HB2 legislation — a law that had drawn national condemnation for its restrictions on transgender individuals and its broader signal about who was welcome in public life. The irony was not lost on those of us in the room. A meeting convened to discuss the surveillance of a disease that had always disproportionately affected marginalized communities was being held in a state that had just legislated against one of them. Some of the people most essential to that conversation had stayed home.</p>
+
+<p>Among those who came, however, I began to see the full landscape of how jurisdictions were responding to the same underlying problem, and what I found was both reassuring and troubling in equal measure. States were not ignoring the bias. They were working on it. But they were working on it independently, each developing their own local workaround to account for the distortion that unlinked records introduced into their HIV surveillance data.</p>
+
+<p>I found myself calling this a Swiss cheese failure. Not because any single state's approach had holes — most of them were thoughtful and technically defensible — but because the system as a whole did. Each jurisdiction had developed its own patch for a gap that existed everywhere, and those patches didn't line up. The bias was being managed, but inconsistently, which meant that jurisdictional comparisons — the very comparisons that drive national resource allocation — were being made across data that had been filtered and adjusted in fundamentally different ways. You were no longer comparing like with like. You were comparing Swiss cheese to Swiss cheese, hoping the holes happened to fall in the same places.</p>
+
+<p>What gave me some measure of hope was that states were already moving toward solutions. The conversation at CSTE was not one of denial but of shared recognition — a field beginning to coordinate around a problem it had long managed in isolation.</p>
+
+<p>The CDC, to its credit, had already begun working on something more durable. The Black Box project — developed through Georgetown University with CDC support and eventually implemented across forty public health jurisdictions — was a direct response to exactly this problem. Its premise was straightforward but technically ambitious: create a secure, privacy-preserving intermediary that could receive HIV surveillance records from multiple jurisdictions, identify probable matches across state lines, and return those match probabilities back to each jurisdiction without ever exposing the underlying data.</p>
+
+<p>The problem it was solving was real and growing. People with HIV are not stationary. They move across state lines for work, for family, for care. A jurisdiction-centric surveillance system, designed at a time when mobility was less of an assumption, was increasingly struggling to follow them. The result was duplicate records, inflated denominators, and distorted pictures of who was in care and who wasn't — compounding exactly the kind of bias we had been discussing. By the time of the CSTE meeting, the Black Box had processed millions of records across quarterly matching sessions, and jurisdictions covering three quarters of people living with diagnosed HIV in the United States had signed on.</p>
+
+<div class="pull-quote">It was, in other words, the infrastructure answer to the Swiss cheese problem. Not a local patch, but a shared solution. The kind that only becomes possible when a field stops managing a problem in isolation and starts naming it together.</div>
+
+<div class="section-break" aria-hidden="true"><span class="section-break-ornament">✦</span></div>
+
+<p>And we needed to talk about the infrastructure we stood up to support the work. The current data platform was being marketed as a data lake — the image conjures something open, something that flows and connects, where tributaries find each other. What we actually had was something closer to a data silo in the cloud.</p>
+
+<p>The distinction matters. Silos in the cloud still don't talk to each other. They're just higher up. And when I reached for the airplane analogy — which the image almost demands — it became clarifying rather than comforting. Planes at altitude, each in their own corridor, carefully managed not to collide. The entire system designed around separation. The culture that had grown up around this platform felt the same way: not collaborative by default, but compartmentalized by design, with coordination treated as an exception that required special permission rather than a baseline expectation.</p>
+
+<p>You can't see the social determinants from inside a silo. You can't reconcile a person's records across systems that have been architected to stay apart. The platform was a symptom of something deeper — an institutional disposition toward protecting data boundaries rather than asking what becomes possible when you cross them carefully and responsibly.</p>
+
+<p>There was another layer to this worth naming. The COVID-era data lake had genuinely good documentation — for the people already inside it. Operators could do their jobs. The machinery was legible to those who built it and maintained it. But for an outsider — a partner agency, a community organization, a researcher trying to understand what the data could actually answer — there was no real point of entry. No way to learn what was in there without already knowing someone who knew.</p>
+
+<p>Local health departments experienced this in a concrete and consequential way. As the state developed cloud-based solutions for statewide COVID dashboards, local health departments did not get access to the granular data behind those dashboards. They received special reports and had opportunities to work with the team, but did not have many tools at their disposal. The decisions that shaped that access were made before those voices were fully heard. We do not know how hard they tried to request more. What we know is that the people coordinating access to testing and vaccines on the ground, fielding questions from communities navigating an unprecedented situation, and serving as trusted messengers who could respond to honest skepticism in ways that a statewide dashboard could not — those people were working with less than the situation warranted. They were the human layer of the response. And the data infrastructure, in some important respects, had outpaced them rather than equipped them.</p>
+
+<p>If the data owners wanted storytelling, they had to start with metadata — a catalog, a data dictionary, some surface that an outsider could actually cling to. And if they wanted to signal that the data was open to collaboration, they needed mechanisms to do that intentionally. Not just access, but invitation. Not just infrastructure, but a posture toward the outside world that said: <em>here is what we have, here is what it can do, and we want to work with you.</em></p>
+
+<p>Without that, even a well-documented system becomes a closed system. The documentation serves the insiders. The outsiders never find the door.</p>
+
+<p>What made this particularly striking was the contrast with what we had just lived through. The COVID response had demonstrated that skilled coordination was possible — that data teams could move in concert, that information could flow across organizational boundaries when the stakes demanded it. But that coordination had not emerged from the platform. It had emerged from deliberate effort: stakeholder calls that kept everyone aligned, project management that tracked milestones, and legal reviews that gave the work its necessary blessing before it moved forward. Structure made it real. And structure like that has to be designed in — it does not arise on its own.</p>
+
+<p>This is the part that bureaucratic solutions tend to get wrong. Silos are not an accident of bad intentions. They are the natural output of systems that optimize for control, compliance, and jurisdictional clarity. A data lake built inside that culture does not dissolve the silos. It relocates them.</p>
+
+<p>This is precisely the problem that data governance exists to address — not as a compliance exercise, but as a framework for making intentional decisions about how data is shared, who has access, under what conditions, and toward what ends. Done well, data governance is the scaffolding that coordination requires. It holds the structure in place while the work gets built. Without it, even the most sophisticated infrastructure remains a collection of well-resourced but disconnected parts.</p>
+
+<p>That, too, was part of what I was leaving.</p>
+
+<div class="section-break" aria-hidden="true"><span class="section-break-ornament">✦</span></div>
+
+<h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:700;font-style:italic;color:var(--text);margin-bottom:1em;line-height:1.2;">Scaling the Analytics</h2>
+
+<p>The COVID data operation did not arrive fully formed. It grew the way most emergency systems grow — from the edges inward, shaped by what the moment demanded rather than what any plan had anticipated.</p>
+
+<p>The earliest work was relational. Before there were dashboards or pipelines or automated outputs, there were people figuring out what the data meant, where it came from, and who needed to know what. Standing up analytics capacity in the middle of a public health emergency meant working with what was available — volunteers, temporary staff, CDC Foundation positions — and finding ways to build a functioning team out of a group that had not previously worked together, across time zones, under sustained pressure.</p>
+
+<p>What emerged was a role-based model. Roles were documented, assigned, and revisited as the team evolved. Team culture had to be actively maintained. Human connectivity across time zones does not happen automatically; it has to be designed for, named, and tended. Microsoft Teams Shifts gave us a way to plan and coordinate across the relay — and I often thought that Teams could have gone further, serving as a genuine data hub connected directly to the channel. That is something worth trying again.</p>
+
+<p>And it was a relay, with handoffs along the way. The daily process began at noon with a database snapshot of surveillance data, timed to coincide with the previous day's dashboard publication. A draft dashboard was made available for business review — a structured checkpoint in which the team verified the prior day's counts before authorizing deployment to the public.</p>
+
+<p>From there, the handover to automated analytics required a trigger. A time-windowed CRON process began polling for a trigger file at a set time each day — choreographed to arrive when the surveillance extracts were expected to be complete. Think of it as a producer who shows up at the right moment, already knowing what the next scene requires, rather than waiting to be called. The alternative was an Outlook calendar notification, sent by the team lead to the dashboard analyst for the upcoming week, that someone would catch on a screen when it flashed. Those seconds mattered. They were critical business hours where quick action could mean the difference between a clean launch and a correction. If a launch failed, we could correct with a follow-up flight — or another if needed — and still make the noon deadline, accompanied by a simple status report. We were much more prepared for that contingency than we had been before.</p>
+
+<p>What followed was a chained, scripted process: a sequential analytics workflow that ran on SAS, the analytics platform developed in Cary, North Carolina, whose licenses were heavily funded by the CDC. This step freed the team the equivalent of around forty hours of person-time per week — time that had largely translated to a download, run, upload cycle of number crunching to process and push datasets to network drives. By this point it was clear that a service account was needed to run all of these steps under a consistent identity, with consistent permissions, independent of any individual team member's machine or connection.</p>
+
+<p>That last point mattered more than it might seem. The COVID data team had been able to engineer the core analytics processes as background or batch operations to a certain extent — but that approach was less resilient than it needed to be. Some teammates had faster machines. Others had slower internet speeds. The moment the analytics server spun up on the same local network as the surveillance system, those variables disappeared. The process stopped depending on whoever happened to be at their desk and started depending on infrastructure instead. That is a different kind of reliability — and a more honest one.</p>
+
+<p>Sunday evenings included a weekly leadership report — a pre-built slide deck generated automatically, complete with graphics of the statewide epidemic curve broken down by the date bases that mattered. Date of symptom onset told the case narrative: when people actually got sick. Date of specimen collection reflected testing behavior and was the default picture for the public-facing dashboards. Date of report to the state system carried its own meaning, particularly for local partners — but it was not the same as the CDC's reporting date, which was calculated from statewide dashboard aggregate counts through a different methodology entirely.</p>
+
+<p>Confused? Don't be. Some things are simply too squeaky when three separate levels of government are trying to agree on a single definition. Sometimes alignment is not achievable, and the honest response is to be clear about what each measure shows rather than pretending they are the same thing. Our dashboards were clear.</p>
+
+<p>The automated Sunday slide deck was one of the proudest accomplishments of the team. It reduced the need for weekend work — a small but real act of stewardship toward the people who had been running the relay all week. The leads still checked in on Sunday logs, but the pre-built artifacts gave us the freedom to think about the Epidemiological Intelligence Briefing squarely within the work week, where it belonged.</p>
+
+<p>The outputs from the analytics server moved to the testing team, who pivoted aggregate testing numbers and hybridized the two data sources for the dashboard counts. This reconciliation was necessary because the massive onboarding delay for electronic laboratory reporting had created multiple parallel reporting pathways that had to be tracked and managed simultaneously. A document called NoDuplicates tracked this work across the entirety of the response — a living record of the effort to make the counts coherent. Among the significant infrastructure built during this period, a lab reporting portal was established to summarize and track testing volume by laboratory identifier, bringing order to a landscape that had grown faster than any single system could absorb.</p>
+
+<p>One of the more consequential additions to the pipeline was the capture of genotype data. The state had several pathways to receive this information from contracted laboratories — and notably, these tests arrived with explicit instructions that they were not clinical tests. That distinction mattered operationally and legally. But the data they carried was critical for decision-makers tracking the emergence and spread of variants. Getting it into the pipeline required building pipes between silos that had not previously been connected. The informatics team did that work thoughtfully, and the variant surveillance that followed — Delta, Omicron, and the decisions made in their wake — depended on it.</p>
+
+<p>The Public Health Informatics Network team — the PHIN team — was essential for building reliable things, even when those things were made of squeaky parts. They distributed the operational load across communicable disease and lead surveillance work statewide — a scope that was real, adept, and genuinely adaptable, but not infinite. Their boundaries did not cross every public health program, and understanding where those boundaries fell was part of working with them effectively rather than around them. I had the chance to demonstrate the robustness of the lab archiving sharding logic using file hashes — a proof that was simple enough to document cleanly and compelling enough to land. The confidence that demonstration established with public health leadership mattered: when I told them the details would be handled, they believed it.</p>
+
+<p>Gary was the master of several ETL solutions that kept the operation running, and if he ever reads this, I owe him a few beers — pumpkin, specifically. But the system retired without achieving the full circular loop we had been working toward. The infrastructure went down with COVID — no other users, no other use cases had been stood up to employ it. That is a loss worth naming. The hardware had been tuned for the solution. The architecture was sound. The resources to achieve broader enterprise analytics automation were a single unicorn away from being solved — and remain so.</p>
+
+<p>What closed the window was not failure but circumstance, arriving in layers. The data lead took a position in another division. Other diseases became priorities — Mpox brought its own demands for expertise, education, and public messaging that required the team's full attention. NCEDSS, the state's communicable disease surveillance system, entered a code freeze ahead of a large application upgrade and re-skin, which shut down the opportunity to upgrade the stack at the moment it might have mattered most. Eventually the operations team recomposed around new needs, and the window closed quietly rather than dramatically.</p>
+
+<p>The infrastructure that had been built, tuned, and run at scale for two years did not find a second life. It is the kind of loss that does not make headlines — not a crash, not a cancellation, just a gradual dispersal of the people and conditions that had made something possible. What remains is the knowledge of what was built, and the confidence that it could be built again with the right long-term support behind it.</p>
+
+<p>The code that orchestrated the daily batch process handled data cleaning, case and lab-level views for downstream analysis, reports, slide decks, and stakeholder outputs for NCHA, CDC, academic partners, and program leadership. It produced two logs that could be inspected in real time, making the most common failure modes visible before they became crises.</p>
+
+<p>We went live with the scripted server processes on July 4, 2021. There is a certain grandiosity to that — and I will not pretend it was accidental. It was a holiday weekend, which made it on theme for the kind of work the team had been doing all along. The people who run a public health data operation don't stop because it's a weekend, or a holiday, or both. Going live on Independence Day felt like the right kind of symbolism for a process designed to give the team some of their time back. Like the file hash proof that confirmed not a single record had been lost, it didn't hurt to mark a moment of pride with a little ceremony.</p>
+
+<div class="section-break" aria-hidden="true"><span class="section-break-ornament">✦</span></div>
+
+<h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:700;font-style:italic;color:var(--text);margin-bottom:1em;line-height:1.2;">The Wind-Down</h2>
+
+<p>The automation did not just change the pipeline. It changed the cadence. I am grateful to the leadership and communications teams who advocated for resetting the clock — moving publication to noon dashboards and eventually to weekly surveillance summaries in March of 2022. The whole cast of producers and actors on that stage needed a more sustainable rhythm, and they got one. The fact that the data were twenty-four hours old turned out to be more of an afterthought to the public at large than anyone had feared. The public wanted clarity. They got it.</p>
+
+<p>The transition to weekly summaries was itself a signal of something larger shifting. After the surges of the Omicron variant made clear that community exposure was broad and rapid, and as at-home testing became the norm, the rationale for daily case and lab reporting began to dissolve. The public health community moved deliberately toward retiring those data streams, aligning the wind-down with the ending of the federal public health emergency. The dashboards evolved with it — condensing into a surveillance summary that brought together what remained most actionable: community wastewater trends, emergency department visit patterns, and variant surveillance.</p>
+
+<p>A simpler dashboard that provided the clearest summary metrics for a public with newer information, a more mature sense of community risk, and continued access to testing tools and vaccines through federal and state channels — at least for a time. COVID-19 vaccines transitioned to the commercial market in September 2023, ending the era of government-distributed doses that had defined the response. Free at-home COVID-19 tests through USPS accepted their last orders on March 8, 2024, though the program paused and restarted more than once before its eventual wind-down. The infrastructure of the public health emergency was being quietly dismantled, piece by piece, even as the virus continued to circulate. The dashboards reflected that transition — not an ending, but a settling into something that looked more like endemic surveillance than emergency response.</p>
+
+<p>This is what it looks like to build to the need, reassess the process, refactor for the future, and automate to minimize failure modes. The refactoring happened while the relay was still running. The automation was not a replacement for human judgment. It was a protection of it — freeing the team for the decisions that required interpretation, relationship, and context that no pipeline could supply.</p>
+
+<p>The lesson underneath all of it was organizational, not technical. The code was the last thing written. The first things written were the roles, the relationships, the shared understanding of what the data meant and who it served. Scaling analytics is, at its core, a human problem. The machines follow.</p>
+
+<div class="section-break" aria-hidden="true"><span class="section-break-ornament">✦</span></div>
+
+<p>When I announced I was leaving my role as data team lead — dropped into a branch-wide meeting without much ceremony — the response was a shower of virtual praise. Colleagues who had been through everything with me signaled, clearly and warmly, that they knew they were in good hands. There was no fear in the room. No apprehension. That mattered to me, because I remembered what it had felt like on the other side of that moment — when leadership had placed me into the role in the first place, during a wave of reassignment, attrition, and the joyous news of a colleague's maternity leave. That transition had been abrupt. This one would be planned.</p>
+
+<p>The timeline stretched deliberately. There were successors to familiarize with the roles and duties, institutional knowledge to transfer, projects to hand off cleanly. By that point my work on the COVID data team looked less like leading and more like coaching — a co-coordinator for existing work rather than the engine driving it. That was, in its way, the lowest energy approach to an exit. The kind that leaves things better than you found them.</p>
+
+<p>To the colleagues I was closest to, I said it plainly: it was time to pursue a new opportunity rather than go back in the box. I'm not sure the metaphor landed the way I meant it. But I knew what I meant. The box was familiar. The box was safe. And the box was no longer where the work was.</p>
+
+<p>What COVID had started in me wasn't finished. The response had cracked something open — a way of working across systems, of building under pressure, of seeing public health as something more elastic and interconnected than any single program could contain. I wanted to follow that. Not manage it from a familiar chair, but actually follow it somewhere new.</p>
+
+<p>There was also something else I had to be honest with myself about. The work I was leaving deserved people who were arriving at it fresh — with energy I no longer had for it, with questions I had already asked, with the kind of generative uncertainty that makes a program grow. Staying too long in a role you've outgrown isn't loyalty. It's a slow way of taking up space that belongs to someone else. The system needed new talent. I needed to make room for it, and I needed to trust that it would come.</p>
+
+<p>I want to be honest about the economics of it, because glossing over that would make this story tidier than it actually was. Stepping away from the data team meant leaving behind a small bonus, and the transition as structured wasn't attractive on its face. But when I learned about a need for a strategic data analyst role in the data office — a new topic area, a tough one, though with partners I already knew — it simply felt like the decision that made sense. An evolution of my analyst role into new waters.</p>
+
+<p>The Data Office was not incidental to this story. They had housed the dashboard team — the people who had made the COVID response visible to the public, working in close proximity to external communications to ensure that what reached North Carolinians was accurate, timely, and legible. They had been part of the integration and governance discussions that I had watched from the data team side. And because of that, they had a vantage point that most of the organization didn't — a view across the landscape rather than from inside any single corner of it.</p>
+
+<p>When I learned that the strategic data analyst role lived there, something clicked. These were people who already understood, at least in part, the argument I had been carrying. I wouldn't have to build the case from scratch. I could build from it.</p>
+
+<p>The role itself was a genuinely new thing. A surveillance system data project in an applied area that hadn't been attempted before — no established methodology to inherit, no prior analyst to hand off from. The funding was time-limited, which meant the work carried its own quiet urgency. And I would soon find, as I settled into it, that I had not left the missing data problem behind. I had simply found a new version of it, in a new population, in a system that was just beginning to learn what it didn't know.</p>
+
+<p>So the decision wasn't a departure. It was more like a hand-off — and a turn toward something I didn't yet fully understand.</p>
+
+<p>I don't think the communicable disease framework is wrong. It's essential. But I had felt its edges — the places where the model stops and the harder, slower, less legible work begins. The work of upstream conditions. And I wasn't sure the program I was returning to had space for that tension, or appetite for what it implied.</p>
+
+<p>So instead of stepping back through a familiar door, I chose to build something new.</p>
+
+<div class="section-break" aria-hidden="true"><span class="section-break-ornament">✦</span></div>
+
+<h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.4rem,3.5vw,2rem);font-weight:700;font-style:italic;color:var(--text);margin-bottom:1.2em;line-height:1.2;">Building the Inevitable</h2>
+
+<p>The problem of behavioral health in the emergency department was not new to North Carolina's surveillance infrastructure. An early study using NC DETECT — North Carolina's statewide syndromic surveillance platform — described emergency department visits by patients with mental health diagnoses during 2008 through 2010, finding that nearly ten percent of ED visits carried a mental health diagnosis code, and that the rate of such visits grew seven times faster than the overall rate of ED visits during that period. A subsequent seven-year summary extended those findings through 2014, covering more than thirty-two million ED visits.</p>
+
+<p>It is worth noting that this line of work has roots that connect directly to the people described in the addendum to this piece. Dr. Anne Hakenewerth was among the first to describe behavioral health outcomes using emergency department data in North Carolina. The foundation she helped lay made the questions we are now asking possible to ask.</p>
+
+<p>Those studies established a baseline. But they also surfaced a limitation that would shape everything that followed. Syndromic surveillance does not cleanly surface the distinction between visits coded <em>for</em> a behavioral health diagnosis and visits coded <em>with</em> one. A person presenting with chest pain who also carries a depression diagnosis looks different in the data than one presenting in acute psychiatric crisis — but the coding alone may not tell you which is which. The studies had noted that behavioral health diagnoses concentrated increasingly with age, a pattern that did not fit the shape of the behavioral health emergency as experienced on the ground. Older patients accumulate diagnoses. That accumulation was inflating the picture.</p>
+
+<p>There is a thus-unspoken hypothesis worth naming. The accumulation of behavioral health diagnosis codes with age may not reflect a true increase in acute behavioral need. It may instead reflect the normal operation of care engagement and screening processes deployed across health systems — systems operating with their own incentives. A patient who regularly sees a primary care physician accumulates diagnoses over time not necessarily because their condition is worsening, but because they are being seen, screened, and coded. The diagnosis code follows the encounter, not always the crisis. When those codes flow into surveillance data, they bring with them the fingerprint of care utilization rather than the signal of acute need. A system that rewards documentation, that ties reimbursement to diagnostic specificity, that prompts screening at every encounter, will produce data that looks like a behavioral health epidemic concentrated in older, more regularly engaged patients — whether or not that is what is actually happening in the emergency department at two in the morning.</p>
+
+<p>Addressing this required moving closer to the moment of arrival. The patient's chief complaint — the words used to describe why they came in — carries information that diagnosis codes cannot. We had been working to identify acute behavioral encounters using that signal instead. But chief complaint data is free text, inconsistently entered, and resistant to structured analysis by design. Careful curation was required. The concepts — syndromic signal, diagnostic noise, chief complaint language, acute behavioral need — would need to be interwoven in a way that produced something cogent and actionable.</p>
+
+<p>It is worth acknowledging that adjudicated coded data — the kind produced by medical billing and claims systems — does exist, and in principle contains more precise diagnostic information. But it lives in a different silo, serves different customers, and arrives with a lag of approximately one year. For a real-time surveillance solution, that lag is disqualifying. By the time adjudicated data reflects a trend, the trend has already moved. Syndromic surveillance is faster, broader, and more actionable — but only if its signal can be made precise enough to be meaningful. That is the problem the chief complaint work is designed to solve.</p>
+
+<p>Large language models offer a genuine path forward. The curation work that once required painstaking manual review becomes tractable at scale when a model can be trained to recognize the language of acute behavioral need across its many expressions. This is not a solved problem. But it is a solvable one, and it is exactly the kind of work that NC DETECT's infrastructure makes worth attempting.</p>
+
+<p>The application of behavioral chief complaints was a proposed solution to highlight psychiatric boarding. These were people in crisis arriving at an ED, receiving a decision to admit, and then waiting. Sometimes for hours. Sometimes for days. Stranded in a care setting not designed to hold them, while the system upstream figures out where they can go.</p>
+
+<p>It was a hard problem. It was also, in a specific technical sense, a surveillance problem. And it turned out I knew some of the partners.</p>
+
+<p>The work centered on NC DETECT and a question about what it could see. A recent enhancement to the system had begun receiving Admission, Discharge, and Transfer (ADT) messages from hospital partners, providing discharge datetimes that made it possible, for the first time, to estimate length of stay from surveillance data alone. If that signal was reliable, it could serve as a directional boarding flag — not a clinical record, but an honest, documented, population-level indicator of a problem that had been difficult to measure consistently across the state.</p>
+
+<p>I called the approach building the inevitable. It is, I'll admit, a grandiose name for what is fundamentally unglamorous work. But the logic behind it is straightforward. Some things need to exist. The field has been circling them for years. The policy moment is arriving whether the infrastructure is ready or not. And someone has to be willing to build toward them persistently and transparently, in full view of the partners whose trust makes the work legitimate.</p>
+
+<p>The model we developed uses ADT-derived discharge datetimes to flag ED encounters exceeding twenty-four hours — a conservative threshold chosen deliberately. It is higher than the clinical standard of four hours post-admission decision, and higher than the federal ECAT (Emergency Care Access and Treatment) quality measure threshold of eight hours that will become mandatory reporting for hospitals in 2028. ECAT operates as an electronic Clinical Quality Measure — an eCQM — which works differently from other measure collection methodologies. Rather than relying on abstracted or manually reported data, eCQMs are calculated directly from structured data in the electronic health record at the point of care, then transmitted to CMS. This means the data infrastructure hospitals build for ECAT compliance is native to their clinical systems in a way that older reporting frameworks are not. That distinction matters for the validation work: the timestamp data elements ECAT requires are generated at the bedside, which is precisely the kind of ground-truth source the NC DETECT validation exercise needs to test against. That gap is not a flaw. It is an honest acknowledgment of what syndromic surveillance can and cannot do. The model is directionally correct. It is not a substitute for clinical judgment. It says so plainly, and that plainness is a trust-building posture with the clinical partners whose participation makes the validation possible.</p>
+
+<p>Because there is a validation gate, and it is real. The timestamp comparison exercise — ADT-derived discharge times against clinical records — either shows directional alignment or it doesn't. If it doesn't, the model doesn't publish. Naming that clearly, in advance, to the partners who are being asked to contribute their data, is part of what makes the collaboration credible rather than extractive.</p>
+
+<div class="pull-quote">What makes this moment particularly timely is the convergence of two pressures — one analytical, one regulatory — arriving at the same place from different directions.</div>
+
+<p>The first is the approaching ECAT mandate. The timestamp data elements it requires overlap directly with what the NC DETECT validation exercise examines — one analytical investment addressing two problems. That alignment is not accidental. It is the kind of confluence that makes otherwise difficult policy conversations easier to have.</p>
+
+<p>The second pressure is the policy change the work is ultimately designed to support. ADT-derived discharge datetimes are the foundation of the boarding signal, but their use is currently under scrutiny precisely because discharge datetime reporting is not uniformly required or consistently implemented across North Carolina facilities. The validation exercise addresses data quality retrospectively. A change to reporting requirements — through statute, regulation, or an update to the NCHESS reporting specification — addresses it prospectively and statewide. That change cannot be driven by public health alone. It requires collective endorsement from hospital partners, routed through the North Carolina Healthcare Association as the body with standing to carry the request forward.</p>
+
+<p>The framework for getting there runs through a directional surveillance partnership loop — signal, surface, contextualize, refine — and a longer policy arc that ends with a standardized statewide reporting requirement that resolves the scrutiny at its source. It involves the state's behavioral health policy division, the clinical informatics leadership of hospital partners, EHR vendors who will need to configure for ECAT compliance, and a governance committee whose approval is required before any of this publishes.</p>
+
+<p>It is, in other words, exactly the kind of work that requires scaffolding. Stakeholder calls. Project management. Legal review. A RACI matrix — Responsible, Accountable, Consulted, Informed — that names who is accountable for what, so that the complexity doesn't collapse into ambiguity when the pressure arrives.</p>
+
+<p>This is the new ocean. The currents are unfamiliar. The partners are known. The destination is not yet visible, but the direction is clear. And the work is worth doing because the people waiting in those emergency departments are not abstractions. They are the same people this piece has been about from the beginning — people moving through systems that were not designed to hold them, showing up in data that was not designed to find them, waiting for an infrastructure that has not yet arrived.</p>
+
+<p>We are building it.</p>
+
+<section class="addendum" aria-labelledby="addendum-title">
+  <span class="addendum-label">Addendum</span>
+  <h2 class="addendum-title" id="addendum-title">A Prologue Still Being Written</h2>
+
+  <p>Before any of this, there were people who made it possible.</p>
+
+  <article class="memorial" aria-label="In memory of Lloyd F. Novick">
+    <p class="memorial-name">Lloyd F. Novick, M.D., M.P.H. — 1941–2025</p>
+    <p>Lloyd Novick was a New Yorker — trained in the great public health tradition that came out of Albany and Columbia, shaped by decades of work on HIV, tuberculosis, correctional health, and the stubborn insistence that epidemiology should serve practitioners, not just academics. He came to North Carolina to build something: a department of public health at East Carolina University grounded in practice, not abstraction. He was the founding editor of the <em>Journal of Public Health Management and Practice</em>, a role he held for more than thirty years. He was, by any honest accounting, a visionary.</p>
+    <p>I remember the day he handed me a copy of his journal — opened to an article about developments in HIV surveillance. It was not an assignment. It was more like an offering. The kind of thing a mentor does when they see something in you before you see it in yourself. I did not know then that I would spend the better part of the next decade working in exactly that field.</p>
+    <p>Lloyd died on August 26, 2025. He had only just stepped back from the journal he built.</p>
+    <p>What I did not fully appreciate until later was the quiet symmetry of that moment. Just weeks before his passing, our workgroup's article on behavioral health holds — using North Carolina's syndromic surveillance system to track patients boarding in emergency departments overnight while awaiting psychiatric care — was published in that same journal. The one he had handed me years earlier. The one he had spent three decades building into a home for exactly this kind of practice-grounded work.</p>
+    <p>I don't think Lloyd would have made much of the coincidence. He was too practical for that. But I find myself making something of it. The journal that first pointed me toward HIV surveillance ended up publishing work from the new ocean I had swum into. That feels like more than accident. It feels like the shape of a career that someone else could see before I could.</p>
+  </article>
+
+  <article class="memorial" aria-label="In memory of Dr. Anne Hakenewerth">
+    <p class="memorial-name">Dr. Anne Hakenewerth</p>
+    <p>Dr. Anne Hakenewerth was my mentor and my supervisor, and she was one of the rarest kinds of leaders I have encountered in this field — someone who could hold a genuinely full calendar and still make time for the kind of unhurried, practical conversation that actually changes how you think. Our offices shared a common wall, and I will admit that I learned more than a few things through that wall. Whether it was an epidemiological community of practice call or a tangle with an IT issue, she moved through both with the same grounded confidence. She too swam in deep waters, and she made it look natural.</p>
+    <p>Before I say what happened, I want to say what that season was. Working alongside colleagues in the communicable disease branch was one of the formative experiences of my professional life. We were there. We did our jobs. We figured out ways to make things work when the playbook didn't exist yet and the pressure was unrelenting. That branch was, for me, a genuine school of public health — not the credentialed kind, but the kind that comes from standing next to people who know things you don't and being trusted to figure out the rest. I am grateful for every one of those colleagues. I carry that season with me.</p>
+
+    <p>I have not fully processed her death. I am not sure I know how to.</p>
+    <p>We were walking to a meeting in another building — Anne a short distance ahead, myself and a small group about twenty seconds behind her — when she was struck by a car outside our office. The driver turned right on red without looking at the crosswalk. I moved without thinking. I helped her up from the ground and sat with her while she was disoriented, not because there was anything useful to say, but because sitting with someone matters. We didn't have many words between us. We made sure she was stable, that she was as okay as she could be, and we waited for the EMTs to arrive.</p>
+    <p>When the ambulance doors closed, I didn't know that Anne had suffered a brain bleed. I didn't know she would lose consciousness on the way to the hospital. I didn't know that what I had just witnessed on that sidewalk was the last time I would see her as herself. Our family and colleagues visited hers in the emergency department in the hours that followed. She never regained consciousness.</p>
+    <p>At the hearing for the defendant, Anne's daughter said something that has stayed with me: that her mother would have changed the shape of COVID response in North Carolina in ways we will simply never know. That is the particular cruelty of losing someone at the height of their capacity. The counterfactual is unresolvable. The absence has a shape, but no edges you can trace.</p>
+    <p>Anne was, in some way, a victim of a system out of tune. A crosswalk. A driver not looking. An infrastructure that had not kept pace with the people moving through it. Her death prompted the governor to direct the Department of Transportation to investigate pedestrian safety across the state. I attended a meeting of the Capitol Area Metropolitan Planning Organization to bring some light to the pedestrian hazards plaguing downtown Raleigh. Afterward, the DOT planner for the district — Joey Hopkins, who would later become Secretary of the Department — pulled me aside to describe plans already in motion: increased attentiveness measures, lane markings, improved turn signals, new signage. Small interventions. The kind that don't make headlines but do save lives.</p>
+    <p>There is something achingly familiar about that to anyone who works in public health. The upstream fix. The unglamorous infrastructure change. The reform that happens after someone is already gone.</p>
+    <p>There is no clean way to hold that. I don't try to anymore.</p>
+    <p>What I can say is that the kind of public health she practiced — present, curious, connected to people, unafraid of the hard conversation — is the kind I am still trying to do. That is the only tribute that makes sense to me. Not words, but the work.</p>
+  </article>
+
+  <p>This piece is, in some sense, a downstream consequence of people like Lloyd and Anne — their investments in a younger analyst who didn't yet know where he was headed. I am grateful for it. And I am grateful for them.</p>
+</section>
+
+</main>
+
+<footer>
+  <p>Bradford Wheeler, M.P.H. &nbsp;·&nbsp; North Carolina Department of Health and Human Services</p>
+</footer>
+
+</body>
+</html>
