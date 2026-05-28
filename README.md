@@ -1,7 +1,6 @@
 # bradwheeler.github.io
 
-Please check out the audio player here:
-Let me know if the player sounds good.
+Welcome!
 
 
 Audio: 
@@ -11,4 +10,4 @@ Audio:
 Long Form:
 [Swimming in a New Ocean](https://bradwheeler.github.io/swimming-in-a-new-ocean.html)
 
-© 2026. All Rights Reserved. 
+© 2026. Bradford Wheeler. All Rights Reserved. 
