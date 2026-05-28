@@ -10,3 +10,5 @@ Audio:
 
 Long Form:
 [Swimming in a New Ocean](https://github.com/bradwheeler/newocean/blob/main/swimming-in-a-new-ocean.html)
+
+© 2026. All Rights Reserved. 
