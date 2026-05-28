@@ -5,8 +5,8 @@ Let me know if the player sounds good.
 
 
 Audio: 
-[Swimming in a New Ocean](https://github.com/bradwheeler/newocean/blob/main/swimming-podcast-player.html) "Podcast Style")
+[Swimming in a New Ocean](https://github.com/bradwheeler/newocean/blob/main/swimming-podcast-player.html)
 
 
 Long Form:
-[Swimming in a New Ocean](https://github.com/bradwheeler/newocean/blob/main/swimming-in-a-new-ocean.html) "Long Form")
+[Swimming in a New Ocean](https://github.com/bradwheeler/newocean/blob/main/swimming-in-a-new-ocean.html)
