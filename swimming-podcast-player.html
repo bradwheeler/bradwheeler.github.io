@@ -547,14 +547,14 @@
       <button class="ctrl-btn" id="prevBtn" title="Previous chapter" aria-label="Previous chapter">
         <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
       </button>
-      <button class="ctrl-btn" id="rewindBtn" title="Rewind 15s" aria-label="Rewind 15 seconds">
-        <svg viewBox="0 0 24 24"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8zm-1.1 11H10v-3.26L9 13.12V12l1.85-.58H11V16zm4.28-1.05c0 .63-.08 1.04-.26 1.36-.23.44-.63.66-1.18.66-.51 0-.88-.2-1.12-.59-.21-.33-.29-.75-.29-1.39v-.83c0-.63.08-1.04.26-1.36.23-.44.63-.66 1.18-.66.51 0 .88.2 1.12.59.21.33.29.75.29 1.39v.83zm-.88-.95c0-.44-.04-.73-.1-.87-.08-.19-.2-.28-.38-.28-.15 0-.27.07-.34.19-.07.11-.1.38-.1.8v1.17c0 .45.03.75.1.9.07.14.2.21.37.21.16 0 .28-.07.35-.2.07-.13.1-.4.1-.84v-1.08z"/></svg>
+      <button class="ctrl-btn" id="rewindBtn" title="Previous scene" aria-label="Previous scene">
+        <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
       </button>
       <button class="ctrl-btn play-pause" id="playPauseBtn" title="Play / Pause" aria-label="Play or pause">
         <svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7z"/></svg>
       </button>
-      <button class="ctrl-btn" id="forwardBtn" title="Forward 15s" aria-label="Forward 15 seconds">
-        <svg viewBox="0 0 24 24"><path d="M18 13c0 3.31-2.69 6-6 6s-6-2.69-6-6 2.69-6 6-6v4l5-5-5-5v4c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8h-2zm-6-2h.85l1.85.58V13l-1 .74V16h-.88v-4.05zm-3.28 3.05c0 .63.08 1.04.26 1.36.23.44.63.66 1.18.66.51 0 .88-.2 1.12-.59.21-.33.29-.75.29-1.39v-.83c0-.63-.08-1.04-.26-1.36-.23-.44-.63-.66-1.18-.66-.51 0-.88.2-1.12.59-.21.33-.29.75-.29 1.39v.83zm.88-.95c0-.44.04-.73.1-.87.08-.19.2-.28.38-.28.15 0 .27.07.34.19.07.11.1.38.1.8v1.17c0 .45-.03.75-.1.9-.07.14-.2.21-.37.21-.16 0-.28-.07-.35-.2-.07-.13-.1-.4-.1-.84v-1.08z"/></svg>
+      <button class="ctrl-btn" id="forwardBtn" title="Next scene" aria-label="Next scene">
+        <svg viewBox="0 0 24 24"><path d="m6 18 8.5-6L6 6v12zm2.5-6 5.5-4v8z"/><path d="M16 6h2v12h-2z"/></svg>
       </button>
       <button class="ctrl-btn" id="nextBtn" title="Next chapter" aria-label="Next chapter">
         <svg viewBox="0 0 24 24"><path d="m6 18 8.5-6L6 6v12zm2.5-6 5.5-4v8z"/><path d="M16 6h2v12h-2z"/></svg>
@@ -719,6 +719,10 @@ If the data owners wanted storytelling, they had to start with metadata — a ca
 
 Without that, even a well-documented system becomes a closed system. The documentation serves the insiders. The outsiders never find the door.
 
+It is worth noting that some infrastructure did exist between counties, the state, and external partners for special data sharing arrangements. There were genuine efforts to bridge gaps — including work to enhance HIV care data — but local solutions tended to be customized to a specific frame of reference, shaped by jurisdictional funding rather than interoperability. This is the nature of decentralized public health infrastructure: each jurisdiction builds what its funding and mandate allow, and the result is a landscape of locally coherent but globally fragmented solutions. Researchers who came prepared with a complete packet — operational requirements, data sharing agreements, data use agreements — could move faster, especially with leadership priority behind them.
+
+Decentralization is not inherently a weakness. The weaving of local knowledge, local relationships, and local accountability into a larger system builds a kind of strength that top-down infrastructure rarely achieves. But that strength only arrives when the connections between the pieces are made under the right conditions — with shared purpose, adequate trust, and the scaffolding to hold it all together long enough to matter.
+
 What made this particularly striking was the contrast with what we had just lived through. The COVID response had demonstrated that skilled coordination was possible — that data teams could move in concert, that information could flow across organizational boundaries when the stakes demanded it. But that coordination had not emerged from the platform. It had emerged from deliberate effort: stakeholder calls that kept everyone aligned, project management that tracked milestones, and legal reviews that gave the work its necessary blessing before it moved forward. Structure made it real. And structure like that has to be designed in — it does not arise on its own.
 
 This is the part that bureaucratic solutions tend to get wrong. Silos are not an accident of bad intentions. They are the natural output of systems that optimize for control, compliance, and jurisdictional clarity. A data lake built inside that culture does not dissolve the silos. It relocates them.
@@ -736,7 +740,11 @@ Scaling the Analytics`
     preview: "The COVID data operation did not arrive fully formed...",
     text: `The earliest work was relational. Before there were dashboards or pipelines or automated outputs, there were people figuring out what the data meant, where it came from, and who needed to know what. Standing up analytics capacity in the middle of a public health emergency meant working with what was available — volunteers, temporary staff, CDC Foundation positions — and finding ways to build a functioning team out of a group that had not previously worked together, across time zones, under sustained pressure.
 
-What emerged was a role-based model. Roles were documented, assigned, and revisited as the team evolved. Team culture had to be actively maintained. Human connectivity across time zones does not happen automatically; it has to be designed for, named, and tended. Microsoft Teams Shifts gave us a way to plan and coordinate across the relay — and I often thought that Teams could have gone further, serving as a genuine data hub connected directly to the channel. That is something worth trying again.
+What emerged was a role-based model. Roles were documented, assigned, and revisited as the team evolved. Team culture had to be actively maintained. Human connectivity across time zones does not happen automatically; it has to be designed for, named, and tended. Microsoft Teams Shifts gave us a way to plan and coordinate across the relay. North Carolina had adopted Teams mere weeks before the state's first reported COVID case — which meant the platform arrived just as it was needed most, but without the organizational experience to use it to its full potential. Some groups had leaned into it early and built real working cultures around their channels — documents, threads, decision trails. Others ran on their own cadence, and their business documents lived in spaces disconnected from the broader infrastructure. The COVID analytics work was housed by the branch that owned most of the data and reporting work, but not all of the planning and communication lived there.
+
+The channel was a partial picture of the work, not the whole of it. In practice, updated response summaries were communicated internally via email — a template that rarely changed and largely moved in one direction. The operational choreography fit the needs of the process. But the relay was fast and tightly dictated from the start, which had a natural consequence: it discouraged volunteers from getting in too deep. The process was reliable. It was also, by design, a little forbidding.
+
+Another month of organizational experience before the pandemic arrived would likely have directed us toward a more intentional configuration — one that treated the channel as a genuine data hub, connected to the outputs the team was producing. The daily dashboard approval process might have been exactly the right place to test this. Think of it the way DevOps teams think about continuous integration and continuous improvement — a repeating, inspectable workflow where each cycle is an opportunity to catch problems early, tighten the handoff, and build confidence in the system. The dashboard relay had that shape already. With the right channel infrastructure behind it, it could have been a model for how the rest of the work was coordinated. We didn't have that month. But it is something worth trying again.
 
 And it was a relay, with handoffs along the way. The daily process began at noon with a database snapshot of surveillance data, timed to coincide with the previous day's dashboard publication. A draft dashboard was made available for business review — a structured checkpoint in which the team verified the prior day's counts before authorizing deployment to the public.
 
@@ -766,33 +774,33 @@ The infrastructure that had been built, tuned, and run at scale for two years di
 
 The code that orchestrated the daily batch process handled data cleaning, case and lab-level views for downstream analysis, reports, slide decks, and stakeholder outputs for NCHA, CDC, academic partners, and program leadership. It produced two logs that could be inspected in real time, making the most common failure modes visible before they became crises.
 
-We went live with the scripted server processes on July 4, 2021. There is a certain grandiosity to that — and I will not pretend it was accidental. It was a holiday weekend, which made it on theme for the kind of work the team had been doing all along. The people who run a public health data operation don't stop because it's a weekend, or a holiday, or both. Going live on Independence Day felt like the right kind of symbolism for a process designed to give the team some of their time back. Like the file hash proof that confirmed not a single record had been lost, it didn't hurt to mark a moment of pride with a little ceremony.`
+We went live with the scripted server processes on July 4, 2021. There is a certain grandiosity to that — and I will not pretend it was accidental. It was a holiday weekend, which made it on theme for the kind of work the team had been doing all along. The people who run a public health data operation don't stop because it's a weekend, or a holiday, or both. Going live on Independence Day felt like the right kind of symbolism for a process designed to give the team some of their time back. Like the file hash proof that confirmed not a single record had been lost, it didn't hurt to mark a moment of pride with a little ceremony.
+
+The Wind-Down
+
+The automation did not just change the pipeline. It changed the cadence. I am grateful to the leadership and communications teams who advocated for resetting the clock — moving publication to noon dashboards and eventually to weekly surveillance summaries in March of 2022. The whole cast of producers and actors on that stage needed a more sustainable rhythm, and they got one. The fact that the data were twenty-four hours old turned out to be more of an afterthought to the public at large than anyone had feared. The public wanted clarity. They got it.`
   },
   {
     num: "VIII",
     title: "The Wind-Down",
     icon: "◑",
     preview: "The automation did not just change the pipeline...",
-    text: `The automation did not just change the pipeline. It changed the cadence. I am grateful to the leadership and communications teams who advocated for resetting the clock — moving publication to noon dashboards and eventually to weekly surveillance summaries in March of 2022. The whole cast of producers and actors on that stage needed a more sustainable rhythm, and they got one. The fact that the data were twenty-four hours old turned out to be more of an afterthought to the public at large than anyone had feared. The public wanted clarity. They got it.
-
-The transition to weekly summaries was itself a signal of something larger shifting. After the surges of the Omicron variant made clear that community exposure was broad and rapid, and as at-home testing became the norm, the rationale for daily case and lab reporting began to dissolve. The public health community moved deliberately toward retiring those data streams, aligning the wind-down with the ending of the federal public health emergency. The dashboards evolved with it — condensing into a surveillance summary that brought together what remained most actionable: community wastewater trends, emergency department visit patterns, and variant surveillance.
-
-A simpler dashboard that provided the clearest summary metrics for a public with newer information, a more mature sense of community risk, and continued access to testing tools and vaccines through federal and state channels — at least for a time. COVID-19 vaccines transitioned to the commercial market in September 2023, ending the era of government-distributed doses that had defined the response. Free at-home COVID-19 tests through USPS accepted their last orders on March 8, 2024, though the program paused and restarted more than once before its eventual wind-down. The infrastructure of the public health emergency was being quietly dismantled, piece by piece, even as the virus continued to circulate. The dashboards reflected that transition — not an ending, but a settling into something that looked more like endemic surveillance than emergency response.
+    text: `A simpler dashboard that provided the clearest summary metrics for a public with newer information, a more mature sense of community risk, and continued access to testing tools and vaccines through federal and state channels — at least for a time. COVID-19 vaccines transitioned to the commercial market in September 2023, ending the era of government-distributed doses that had defined the response. Free at-home COVID-19 tests through USPS accepted their last orders on March 8, 2024, though the program paused and restarted more than once before its eventual wind-down. The infrastructure of the public health emergency was being quietly dismantled, piece by piece, even as the virus continued to circulate. The dashboards reflected that transition — not an ending, but a settling into something that looked more like endemic surveillance than emergency response.
 
 This is what it looks like to build to the need, reassess the process, refactor for the future, and automate to minimize failure modes. The refactoring happened while the relay was still running. The automation was not a replacement for human judgment. It was a protection of it — freeing the team for the decisions that required interpretation, relationship, and context that no pipeline could supply.
 
-The lesson underneath all of it was organizational, not technical. The code was the last thing written. The first things written were the roles, the relationships, the shared understanding of what the data meant and who it served. Scaling analytics is, at its core, a human problem. The machines follow.`
+The lesson underneath all of it was organizational, not technical. The code was the last thing written. The first things written were the roles, the relationships, the shared understanding of what the data meant and who it served. Scaling analytics is, at its core, a human problem. The machines follow.
+
+When I announced I was leaving my role as data team lead — dropped into a branch-wide meeting without much ceremony — the response was a shower of virtual praise. Colleagues who had been through everything with me signaled, clearly and warmly, that they knew they were in good hands. There was no fear in the room. No apprehension. That mattered to me, because I remembered what it had felt like on the other side of that moment — when leadership had placed me into the role in the first place, during a wave of reassignment, attrition, and the joyous news of a colleague's maternity leave. That transition had been abrupt. This one would be planned.
+
+The timeline stretched deliberately. There were successors to familiarize with the roles and duties, institutional knowledge to transfer, projects to hand off cleanly. By that point my work on the COVID data team looked less like leading and more like coaching — a co-coordinator for existing work rather than the engine driving it. That was, in its way, the lowest energy approach to an exit. The kind that leaves things better than you found them.`
   },
   {
     num: "IX",
     title: "Into New Waters",
     icon: "→",
     preview: "It was time to pursue a new opportunity rather than go back in the box...",
-    text: `When I announced I was leaving my role as data team lead — dropped into a branch-wide meeting without much ceremony — the response was a shower of virtual praise. Colleagues who had been through everything with me signaled, clearly and warmly, that they knew they were in good hands. There was no fear in the room. No apprehension. That mattered to me, because I remembered what it had felt like on the other side of that moment — when leadership had placed me into the role in the first place, during a wave of reassignment, attrition, and the joyous news of a colleague's maternity leave. That transition had been abrupt. This one would be planned.
-
-The timeline stretched deliberately. There were successors to familiarize with the roles and duties, institutional knowledge to transfer, projects to hand off cleanly. By that point my work on the COVID data team looked less like leading and more like coaching — a co-coordinator for existing work rather than the engine driving it. That was, in its way, the lowest energy approach to an exit. The kind that leaves things better than you found them.
-
-To the colleagues I was closest to, I said it plainly: it was time to pursue a new opportunity rather than go back in the box. I'm not sure the metaphor landed the way I meant it. But I knew what I meant. The box was familiar. The box was safe. And the box was no longer where the work was.
+    text: `To the colleagues I was closest to, I said it plainly: it was time to pursue a new opportunity rather than go back in the box. I'm not sure the metaphor landed the way I meant it. But I knew what I meant. The box was familiar. The box was safe. And the box was no longer where the work was.
 
 What COVID had started in me wasn't finished. The response had cracked something open — a way of working across systems, of building under pressure, of seeing public health as something more elastic and interconnected than any single program could contain. I wanted to follow that. Not manage it from a familiar chair, but actually follow it somewhere new.
 
@@ -810,18 +818,18 @@ So the decision wasn't a departure. It was more like a hand-off — and a turn t
 
 I don't think the communicable disease framework is wrong. It's essential. But I had felt its edges — the places where the model stops and the harder, slower, less legible work begins. The work of upstream conditions. And I wasn't sure the program I was returning to had space for that tension, or appetite for what it implied.
 
-So instead of stepping back through a familiar door, I chose to build something new.`
+So instead of stepping back through a familiar door, I chose to build something new.
+
+Building the Inevitable
+
+The problem of behavioral health in the emergency department was not new to North Carolina's surveillance infrastructure. An early study using NC DETECT — North Carolina's statewide syndromic surveillance platform — described emergency department visits by patients with mental health diagnoses during 2008 through 2010, finding that nearly ten percent of ED visits carried a mental health diagnosis code, and that the rate of such visits grew seven times faster than the overall rate of ED visits during that period. A subsequent seven-year summary extended those findings through 2014, covering more than thirty-two million ED visits.`
   },
   {
     num: "X",
     title: "Building the Inevitable",
     icon: "∞",
     preview: "The application of behavioral chief complaints was a proposed solution...",
-    text: `The problem of behavioral health in the emergency department was not new to North Carolina's surveillance infrastructure. An early study using NC DETECT — North Carolina's statewide syndromic surveillance platform — described emergency department visits by patients with mental health diagnoses during 2008 through 2010, finding that nearly ten percent of ED visits carried a mental health diagnosis code, and that the rate of such visits grew seven times faster than the overall rate of ED visits during that period. A subsequent seven-year summary extended those findings through 2014, covering more than thirty-two million ED visits.
-
-It is worth noting that this line of work has roots that connect directly to the people described in the addendum to this piece. Dr. Anne Hakenewerth was among the first to describe behavioral health outcomes using emergency department data in North Carolina. The foundation she helped lay made the questions we are now asking possible to ask.
-
-Those studies established a baseline. But they also surfaced a limitation that would shape everything that followed. Syndromic surveillance does not cleanly surface the distinction between visits coded for a behavioral health diagnosis and visits coded with one. A person presenting with chest pain who also carries a depression diagnosis looks different in the data than one presenting in acute psychiatric crisis — but the coding alone may not tell you which is which. The studies had noted that behavioral health diagnoses concentrated increasingly with age, a pattern that did not fit the shape of the behavioral health emergency as experienced on the ground. Older patients accumulate diagnoses. That accumulation was inflating the picture.
+    text: `Those studies established a baseline. But they also surfaced a limitation that would shape everything that followed. Syndromic surveillance does not cleanly surface the distinction between visits coded for a behavioral health diagnosis and visits coded with one. A person presenting with chest pain who also carries a depression diagnosis looks different in the data than one presenting in acute psychiatric crisis — but the coding alone may not tell you which is which. The studies had noted that behavioral health diagnoses concentrated increasingly with age, a pattern that did not fit the shape of the behavioral health emergency as experienced on the ground. Older patients accumulate diagnoses. That accumulation was inflating the picture.
 
 There is a thus-unspoken hypothesis worth naming. The accumulation of behavioral health diagnosis codes with age may not reflect a true increase in acute behavioral need. It may instead reflect the normal operation of care engagement and screening processes deployed across health systems — systems operating with their own incentives. A patient who regularly sees a primary care physician accumulates diagnoses over time not necessarily because their condition is worsening, but because they are being seen, screened, and coded. The diagnosis code follows the encounter, not always the crisis. When those codes flow into surveillance data, they bring with them the fingerprint of care utilization rather than the signal of acute need. A system that rewards documentation, that ties reimbursement to diagnostic specificity, that prompts screening at every encounter, will produce data that looks like a behavioral health epidemic concentrated in older, more regularly engaged patients — whether or not that is what is actually happening in the emergency department at two in the morning.
 
@@ -855,18 +863,18 @@ This is the new ocean. The currents are unfamiliar. The partners are known. The 
 
 We are building it.
 
-A Prologue Still Being Written`
+A Prologue Still Being Written
+
+Before any of this, there were people who made it possible.
+
+Lloyd F. Novick, M.D., M.P.H. — 1941–2025`
   },
   {
     num: "✦",
     title: "A Prologue Still Being Written",
     icon: "✦",
     preview: "Before any of this, there were people who made it possible...",
-    text: `Lloyd F. Novick, M.D., M.P.H. — 1941–2025
-
-Lloyd Novick was a New Yorker — trained in the great public health tradition that came out of Albany and Columbia, shaped by decades of work on HIV, tuberculosis, correctional health, and the stubborn insistence that epidemiology should serve practitioners, not just academics. He came to North Carolina to build something: a department of public health at East Carolina University grounded in practice, not abstraction. He was the founding editor of the Journal of Public Health Management and Practice , a role he held for more than thirty years. He was, by any honest accounting, a visionary.
-
-I remember the day he handed me a copy of his journal — opened to an article about developments in HIV surveillance. It was not an assignment. It was more like an offering. The kind of thing a mentor does when they see something in you before you see it in yourself. I did not know then that I would spend the better part of the next decade working in exactly that field.
+    text: `I remember the day he handed me a copy of his journal — opened to an article about developments in HIV surveillance. It was not an assignment. It was more like an offering. The kind of thing a mentor does when they see something in you before you see it in yourself. The article was nestled in an issue devoted to public health emergency preparedness — a collection that ranged across public health response, public communications, rural community preparedness, immunization information systems, and outbreaks. At the time, I read the HIV piece and moved on. I did not know then that I would spend the better part of the next decade working in exactly that field — or that nearly every other topic in that issue would become part of my professional life as well.
 
 Lloyd died on August 26, 2025. He had only just stepped back from the journal he built.
 
@@ -1170,15 +1178,14 @@ document.getElementById('nextBtn').addEventListener('click', () => {
 });
 
 document.getElementById('rewindBtn').addEventListener('click', () => {
-  if (currentChapter >= 0) {
-    stopSpeech();
-    setTimeout(() => playSpeech(), 100);
-  }
+  if (currentChapter > 0) loadChapter(currentChapter - 1);
 });
 
 document.getElementById('forwardBtn').addEventListener('click', () => {
   if (currentChapter < CHAPTERS.length - 1) loadChapter(currentChapter + 1);
 });
+
+
 
 document.getElementById('speedRange').addEventListener('input', function() {
   document.getElementById('speedDisplay').textContent = parseFloat(this.value).toFixed(2) + '×';
