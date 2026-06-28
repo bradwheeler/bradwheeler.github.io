@@ -12,7 +12,7 @@ Outputs MP3 files into an audio/ directory.
 import requests
 import os
 
-API_KEY = "sk_9aaf4c97c1014796c7b19cfa6df7c9a5b5d84ea306304676"
+API_KEY = os.environ["ELEVENLABS_API_KEY"]
 VOICE_ID = "WsPXzUoQ9wMYrz5cJnBS"
 URL = f"https://api.elevenlabs.io/v1/text-to-speech/{VOICE_ID}"
 
@@ -43,11 +43,11 @@ Writing in the mid-1990s with his son Ezra, Susser argued that the dominant para
 
 Susser called what he saw coming eco-epidemiology. The image he reached for was Chinese boxes — nested levels of organization, each containing the one below it, each requiring its own methods and its own questions. Molecular epidemiology at the innermost level. Individual risk factors in the middle. Social and environmental contexts at the outermost ring. The argument was not that risk factors didn't matter. It was that a single-level paradigm, however well executed, could not see the whole problem. The web of causation had a spider, and risk factor epidemiology wasn't looking for it.
 
-What Susser described as an intellectual limitation of the paradigm, I kept recognizing as an institutional one. Applied public health had inherited the siloed structure of the disciplines that preceded it. Programs organized around disease categories. Data systems organized around programs. Funding organized around data systems. Each level optimized for its own outputs, accountable to its own metrics, largely incurious about what was happening one box out.
+What Susser described as an intellectual limitation of the paradigm, I kept recognizing as an institutional one. Applied public health had inherited a siloed structure from the disciplines that preceded it. Programs organized around disease categories. Data systems organized around programs. Funding organized around data systems. Each level optimized for its own outputs, accountable to its own metrics, largely incurious about what was happening one box out.
 
 The result was a kind of enforced myopia. Not malicious — institutional myopia rarely is. But consequential. The Arant and Rosen study had made the court system's role in viral suppression visible in the data. But the data was only telling part of the story. I had seen another part of it through my time working with the state's AIDS Drug Assistance Program, known as HMAP. Jails across North Carolina had various arrangements in place to bridge medications for people entering custody. Some were thoughtful and well-coordinated. Others were not. The continuity of antiretroviral therapy — the thing that produces and sustains viral suppression — depended on arrangements that were locally negotiated, inconsistently implemented, and largely invisible to the surveillance system tracking the outcome.
 
-There was something else I had learned, through Dr. Michelle Ogle — a clinician and former member of the Presidential Advisory Council on HIV/AIDS — about what sustaining suppression actually requires at the level of the body and the life. Antiretroviral medications need to be taken with food. Not as a preference, but as a clinical necessity — absorption, tolerability, adherence. Dr. Ogle's practice had recognized that prescribing the medication was not enough. They installed a food pantry. Not as a charitable gesture, but as a clinical intervention. Food is medicine. And medicine that is taken consistently, with adequate nutrition, produces viral suppression. Viral suppression is prevention. The dividend — the reduction in transmission, the sustained health of the patient, the cost avoided downstream — is real and measurable. But it only appears when the system is designed to maximize health outcomes rather than simply to deliver a prescription.
+There was something else I had learned, through Dr. Michelle Ogle — a clinician and former member of the Presidential Advisory Council on HIV/AIDS — about what sustaining suppression actually requires at the level of the body and the life. Antiretroviral medications need to be taken with food. Not as a preference, but as a clinical necessity — absorption, tolerability, adherence. Dr. Ogle's practice had recognized that prescribing the medication was not enough. They installed a food pantry. Not as a charitable gesture, but as a clinical intervention. Food is medicine. And medicine that is taken regularly, with adequate nutrition, produces viral suppression. Viral suppression is prevention. The dividend — the reduction in transmission, the sustained health of the patient, the cost avoided downstream — is real and measurable. But it only appears when the system is designed to maximize health outcomes rather than simply to deliver a prescription.
 
 What the surveillance metric recorded was the outcome. What it could not see was the food pantry, the jail medication bridge, the broken appointment, the lapsed insurance. A communicable disease branch measuring suppression rates was measuring the shadow of a system it couldn't see. Susser would have recognized the problem immediately. The outcome lived at one level. The causes lived in the boxes surrounding it.
 
@@ -57,6 +57,17 @@ This was the tension I kept returning to. Not just in the data. In the architect
     }
 }
 
+PRONUNCIATION_SUBS = {
+    "Susser": "Suhsser",
+    "Arant": "Arrant",
+    "HMAP": "eighchmap",
+}
+
+def prepare_text(text):
+    for word, replacement in PRONUNCIATION_SUBS.items():
+        text = text.replace(word, replacement)
+    return f"<speak>{text}</speak>"
+
 os.makedirs("audio", exist_ok=True)
 
 for filename, chapter in CHAPTERS.items():
@@ -64,12 +75,14 @@ for filename, chapter in CHAPTERS.items():
     response = requests.post(
         URL,
         json={
-            "text": chapter["text"],
-            "model_id": "eleven_multilingual_v2",
+            "text": prepare_text(chapter["text"]),
+            "model_id": "eleven_flash_v2",
             "voice_settings": {
                 "stability": 0.5,
                 "similarity_boost": 0.75,
                 "style": 0.3,
+                "use_speaker_boost": True,
+                "speed": 1.1,
             }
         },
         headers=HEADERS,
