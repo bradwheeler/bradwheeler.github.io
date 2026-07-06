@@ -1,3 +1,2 @@
 .env
-audio/
 .pronunciation_dict_cache.json
