@@ -105,13 +105,13 @@ The CDC, to its credit, had already begun working on something more durable. The
 
 The problem it was solving was real and growing. People with HIV are not stationary. They move across state lines for work, for family, for care. A jurisdiction-centric surveillance system, designed at a time when mobility was less of an assumption, was increasingly struggling to follow them. The result was duplicate records, inflated denominators, and distorted pictures of who was in care and who wasn't — compounding exactly the kind of bias we had been discussing. By the time of the CSTE meeting, the Black Box had processed millions of records across quarterly matching sessions, and jurisdictions covering three quarters of people living with diagnosed HIV in the United States had signed on.
 
-And we needed to talk about the infrastructure we stood up to support the work. The current data platform was being marketed as a data lake — the image conjures something open, something that flows and connects, where tributaries find each other. What we actually had was something closer to a data silo in the cloud.
-
 It was, in other words, the infrastructure answer to the Swiss cheese problem. Not a local patch, but a shared solution. The kind that only becomes possible when a field stops managing a problem in isolation and starts naming it together."""
     },
     "chapter_6_the_platform_problem": {
         "title": "Chapter VI — The Platform Problem",
-        "text": """The distinction matters. Silos in the cloud still don't talk to each other. They're just higher up. And when I reached for the airplane analogy — which the image almost demands — it became clarifying rather than comforting. Planes at altitude, each in their own corridor, carefully managed not to collide. The entire system designed around separation. The culture that had grown up around this platform felt the same way: not collaborative by default, but compartmentalized by design, with coordination treated as an exception that required special permission rather than a baseline expectation.
+        "text": """And we needed to talk about the infrastructure we stood up to support the work. The current data platform was being marketed as a data lake — the image conjures something open, something that flows and connects, where tributaries find each other. What we actually had was something closer to a data silo in the cloud.
+
+The distinction matters. Silos in the cloud still don't talk to each other. They're just higher up. And when I reached for the airplane analogy — which the image almost demands — it became clarifying rather than comforting. Planes at altitude, each in their own corridor, carefully managed not to collide. The entire system designed around separation. The culture that had grown up around this platform felt the same way: not collaborative by default, but compartmentalized by design, with coordination treated as an exception that required special permission rather than a baseline expectation.
 
 You can't see the social determinants from inside a silo. You can't reconcile a person's records across systems that have been architected to stay apart. The platform was a symptom of something deeper — an institutional disposition toward protecting data boundaries rather than asking what becomes possible when you cross them carefully and responsibly.
 
@@ -319,7 +319,7 @@ This was the tension I kept returning to. Not just in the data. In the very stru
     }
 }
 
-CHAPTERS = {"chapter_7_scaling_the_analytics": CHAPTERS_ALL["chapter_7_scaling_the_analytics"]}
+CHAPTERS = {"chapter_2_the_infrastructure": CHAPTERS_ALL["chapter_2_the_infrastructure"]}
 
 TEXT_SUBS = {
     "Susser's": "Süßer's",
