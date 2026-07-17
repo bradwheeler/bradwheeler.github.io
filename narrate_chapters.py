@@ -137,7 +137,13 @@ That, too, was part of what I was leaving."""
     },
     "chapter_11_a_prologue_still_being_written": {
         "title": "A Prologue Still Being Written",
-        "text": """I remember the day he handed me a copy of his journal — opened to an article about developments in HIV surveillance. It was not an assignment. It was more like an offering. The kind of thing a mentor does when they see something in you before you see it in yourself. The article was nestled in an issue devoted to public health emergency preparedness — a collection that ranged across public health response, public communications, rural community preparedness, immunization information systems, and outbreaks. At the time, I read the HIV piece and moved on. I did not know then that I would spend the better part of the next decade working in exactly that field — or that nearly every other topic in that issue would become part of my professional life as well.
+        "text": """Before any of this, there were people who made it possible.
+
+Lloyd F. Novick, M.D., M.P.H. — 1941–2025
+
+Lloyd Novick was a New Yorker — trained in the great public health tradition that came out of Albany and Columbia, shaped by decades of work on HIV, tuberculosis, correctional health, and the stubborn insistence that epidemiology should serve practitioners, not just academics. He came to North Carolina to build something: a department of public health at East Carolina University grounded in practice, not abstraction. He was the founding editor of the Journal of Public Health Management and Practice, a role he held for more than thirty years. He was, by any honest accounting, a visionary.
+
+I remember the day he handed me a copy of his journal — opened to an article about developments in HIV surveillance. It was not an assignment. It was more like an offering. The kind of thing a mentor does when they see something in you before you see it in yourself. The article was nestled in an issue devoted to public health emergency preparedness — a collection that ranged across public health response, public communications, rural community preparedness, immunization information systems, and outbreaks. At the time, I read the HIV piece and moved on. I did not know then that I would spend the better part of the next decade working in exactly that field — or that nearly every other topic in that issue would become part of my professional life as well.
 
 Lloyd died on August 26, 2025. He had only just stepped back from the journal he built.
 
