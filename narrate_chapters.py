@@ -355,6 +355,8 @@ TEXT_SUBS = {
     "EMTs": "E.M.T.s",
     "health holds": "health-holds",
     "DOT": "D.O.T.",
+    "M.D.": "em dee",
+    "1941–2025": "1941 to 2025",
     "M.P.H.": "em pee aitch",
     "Researchers": "Reesurchers",
     "researchers": "reesurchers",
